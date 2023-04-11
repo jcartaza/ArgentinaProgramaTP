@@ -129,9 +129,15 @@ function calcularPrecio() {
 //funcion para descargar el pdf con un formato muy basico
   downloadButton.addEventListener("click", () => {
     const doc = new jsPDF();
-    doc.text(`Cotizacion partiendo desde ${origenProv}`,10,10);
-    doc.text(`Con el paquete ${paquete.nombre}`,10,20)
-    doc.text(`Precio Total: $${precioTotal}`, 10, 30);
+    const imgPdf='./imagenes/norturismopdf.jpg';
+    doc.addImage(imgPdf, 'JPEG', 30, 0, 150, 100);
+    doc.text(`PRESUPUESTO DEL MEJOR VIAJE PARA VOS :`,60,80)
+    doc.text(`Cotizacion partiendo desde :     ${origenProv}`,60,100);
+    doc.text(`Con destino a  :                 ${paquete.nombre}`,60,120)
+    doc.text(`Cantidad de  Adultos :           ${adultos}`,60,140)
+    doc.text(`Cantidad de  Menores :           ${menores}`,60,160)
+    doc.text(`Precio Total:                    $${precioTotal}`, 60, 180);
+    doc.text(`-Presenta este presupuesto en tu agencia de viaje-`, 40, 220);
     doc.save("cotizacion.pdf");
   });
  
